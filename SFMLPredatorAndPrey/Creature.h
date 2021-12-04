@@ -13,8 +13,6 @@ class Creature {
 public: 
 	Creature(sf::Vertex pixel, unsigned int x, unsigned int y);
 	sf::Vertex pixel;
-	
-	void Move();
 	unsigned int getX();
 	unsigned int getY();
 private:

@@ -17,18 +17,6 @@ void Prey::Move()
 			this->pixel.position.x = this->getX();
 			this->pixel.position.y = this->getY();
 		}
-		else {
-			//its either predator or prey
-			shared_ptr<Predator> preyCreature = dynamic_pointer_cast<Predator>(creatureAtLocation);
-			if (creatureAtLocation) {
-				//its a predator in this location
-
-			}
-			else {
-				//its another prey for now just ignore it
-			}
-		}
-
 	}
 }
 

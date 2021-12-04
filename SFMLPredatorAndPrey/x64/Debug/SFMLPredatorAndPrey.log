@@ -10,6 +10,12 @@ c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(901): warn
           [
               _Ty=Predator
           ]
-  c:\users\peter\desktop\sfml\sfml\code\sfmlpredatorandprey\sfmlpredatorandprey\game.cpp(51): note: see reference to function template instantiation 'std::shared_ptr<Predator> std::make_shared<Predator,sf::Vertex&,float&,float&>(sf::Vertex &,float &,float &)' being compiled
+  c:\users\peter\desktop\sfml\sfml\code\sfmlpredatorandprey\sfmlpredatorandprey\game.cpp(57): note: see reference to function template instantiation 'std::shared_ptr<Predator> std::make_shared<Predator,sf::Vertex&,float&,float&>(sf::Vertex &,float &,float &)' being compiled
+  Creature.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Prey.cpp
+  Predator.cpp
+  Main.cpp
   SFMLPredatorAndPrey.vcxproj -> C:\Users\peter\Desktop\SFML\SFML\Code\SFMLPredatorAndPrey\x64\Debug\SFMLPredatorAndPrey.exe
   SFMLPredatorAndPrey.vcxproj -> C:\Users\peter\Desktop\SFML\SFML\Code\SFMLPredatorAndPrey\x64\Debug\SFMLPredatorAndPrey.pdb (Partial PDB)

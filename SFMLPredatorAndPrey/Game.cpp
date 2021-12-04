@@ -28,8 +28,12 @@ test this otherwise i might generate the same results everytime
 the position of the death function can significantly change how the game is played so play around with moving it around so that 
 creatures can perform their action then do a health check etc
 
+Things to do:
 to optimise see how well hopsons videos run
 remove redundant functions that creature dosen't use but predator and prey do
+it is still possible for all predators to die but for now it seems that is unlikely so for now should be fine
+a creature will always move left or right and up or down so they can never stay still or move in a different direction
+test the game using the release API to check if its any faster or breaks
 */
 
 shared_ptr<Creature> creatures[WIDTH][HEIGHT];
@@ -39,10 +43,12 @@ Game::Game() : window(sf::VideoMode(WIDTH, HEIGHT), "Predator and Prey"),
 {
 	
 	window.setFramerateLimit(60);
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dis(1, 1000);//look into whether this still makes it unique
 	for (float x = 0; x < WIDTH; x++) {
 		for (float y = 0; y < HEIGHT; y++) {
-
-			int n = 1 + rand() % 1000;//1 - 1000
+			int n = dis(gen);
 			if (n < 50) {
 				//predator
 				sf::Vertex tmpPixel;
@@ -122,8 +128,8 @@ void Game::handlePixelsVector()
 	pixels.clear();
 	for (int x = 0; x < WIDTH; x++) {
 		for (int y = 0; y < HEIGHT; y++) {
-			if (creatures[(int)x][(int)y] != NULL) {
-				pixels.push_back(creatures[(int)x][(int)y]->pixel);
+			if (creatures[x][y] != NULL) {
+				pixels.push_back(creatures[x][y]->pixel);
 			}
 		}
 	}
@@ -134,14 +140,14 @@ void Game::handleCreatures()
 	//Call all of the behaviour in here
 	for (int x = 0; x < WIDTH; x++) {//for performance i could store them in a vector and 2d array so that i know which to check instead of doing the null check
 		for (int y = 0; y < HEIGHT; y++) {
-			if (creatures[(int)x][(int)y] != NULL) {
+			if (creatures[x][y] != NULL) {
 				//This defeats the point of having different classes if i have to do multiple if statements to 
 				//check which one it is try to get something like finalTakeoutApp working
 				
 				shared_ptr<Prey> derivedCreature = dynamic_pointer_cast<Prey>(creatures[x][y]);
 				if (derivedCreature) {
 					derivedCreature->Move();
-					creatures[x][y] = NULL;//This is a performance issue but without it it breaks
+					creatures[x][y] = NULL;
 					creatures[derivedCreature->getX()][derivedCreature->getY()] = derivedCreature;
 					derivedCreature->handleHealth();
 				}
