@@ -1,11 +1,8 @@
 #include "Creature.h"
 using namespace std;
 
-
-
 Creature::Creature(sf::Vertex pixel, unsigned int x, unsigned int y)
 {
-	
 	this->pixel = pixel;
 	this->x = x;
 	this->y = y;
@@ -20,32 +17,9 @@ void Creature::getMove()
 	
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> dis(1, 100);
-	int direction = dis(gen);
-	
-	if (direction <= 50) {
-		//left and right
-		int direction = dis(gen);
-		if (direction <= 50) {
-			//left
-			this->setTmpX(this->getTmpX() - 1);
-		}
-		else {
-			//right
-			this->setTmpX(this->getTmpX() + 1);
-		}
-	}
-	else {
-		int direction = dis(gen);
-		if (direction <= 50) {
-			//up
-			this->setTmpY(this->getTmpY() - 1);
-		}
-		else {
-			//down
-			this->setTmpY(this->getTmpY() + 1);
-		}
-	}
+	std::uniform_int_distribution<> dis(-1, 1);
+	this->setTmpX(this->getTmpX() + dis(gen));
+	this->setTmpY(this->getTmpY() + dis(gen));
 }
 
 //give each predator and prey its own move and call this something else

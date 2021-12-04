@@ -32,7 +32,6 @@ Things to do:
 to optimise see how well hopsons videos run
 remove redundant functions that creature dosen't use but predator and prey do
 it is still possible for all predators to die but for now it seems that is unlikely so for now should be fine
-a creature will always move left or right and up or down so they can never stay still or move in a different direction
 test the game using the release API to check if its any faster or breaks
 */
 
@@ -88,30 +87,28 @@ void Game::run() {
 void Game::addPredator(unsigned int x, unsigned int y)
 {
 	if ((x >= 0 && x <= WIDTH) && (y > 0 && y < HEIGHT)) {
-		creatures[(int)x][(int)y] = NULL;
 		sf::Vertex tmpPixel;
 		tmpPixel.position = { (float)x,(float)y };
 		tmpPixel.color = { 255, 0, 0 };
 		shared_ptr<Predator> predator = make_shared<Predator>(tmpPixel, x, y);
-		creatures[(int)x][(int)y] = predator;
+		creatures[x][y] = predator;
 	}
 }
 
 void Game::addPrey(unsigned int x, unsigned int y)
 {
 	if ((x >= 0 && x <= WIDTH) && (y > 0 && y < HEIGHT)) {
-		creatures[(int)x][(int)y] = NULL;
 		sf::Vertex tmpPixel;
 		tmpPixel.position = { (float)x, (float)y };
 		tmpPixel.color = { 0, 255, 0 };
 		shared_ptr<Prey> prey = make_shared<Prey>(tmpPixel, x, y);
-		creatures[(int)x][(int)y] = prey;
+		creatures[x][y] = prey;
 	}
 }
 
 void Game::removeCreature(unsigned int x, unsigned int y)
 {
-	creatures[(int)x][(int)y] = NULL;
+	creatures[x][y] = NULL;
 }
 
 void Game::pollEvents() {

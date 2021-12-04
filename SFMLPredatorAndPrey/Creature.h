@@ -28,7 +28,6 @@ protected:
 	unsigned int getTmpX();
 	void setTmpX(int val);
 	void setTmpY(int val);
-	//use these at the end when i make a move in pred and prey class
 	void setX(int val);
 	void setY(int val);
 	shared_ptr<Creature> findCreatureAtPos(unsigned int x, unsigned int y);
