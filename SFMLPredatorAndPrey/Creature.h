@@ -15,6 +15,7 @@ public:
 	sf::Vertex pixel;
 	unsigned int getX();
 	unsigned int getY();
+	int getHealth();
 private:
 	unsigned int x;
 	unsigned int y;
@@ -32,8 +33,5 @@ protected:
 	void setY(int val);
 	shared_ptr<Creature> findCreatureAtPos(unsigned int x, unsigned int y);
 	void setHealth(int val);
-	int getHealth();
 	const int maxHealth = 10;//const can be assigned in h file
-	
-
 };

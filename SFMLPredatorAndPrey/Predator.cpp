@@ -14,14 +14,16 @@ void Predator::Move()
 			//its an empty space
 			this->setX(this->getTmpX());
 			this->setY(this->getTmpY());
-			this->pixel.position.x = this->getX();
-			this->pixel.position.y = this->getY();
+			this->pixel.position.x = (float)this->getX();
+			this->pixel.position.y = (float)this->getY();
 		}
 		else {
 			//its either predator or prey
 			shared_ptr<Prey> preyCreature = dynamic_pointer_cast<Prey>(creatureAtLocation);
 			if (preyCreature) {
 				//its a prey in this location
+				this->setHealth(this->getHealth() + preyCreature->getHealth());//this gives predator prey remaning health
+				//removing this line creates a different kind of back and forth effect
 				Game::addPredator(this->getTmpX(), this->getTmpY());
 			}
 		}

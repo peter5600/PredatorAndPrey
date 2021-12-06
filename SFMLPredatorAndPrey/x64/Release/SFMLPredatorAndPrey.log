@@ -1,0 +1,25 @@
+﻿  Creature.cpp
+  Game.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\memory(901): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\memory(971): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<sf::Vertex&,float&,float&>(sf::Vertex &,float &,float &)' being compiled
+          with
+          [
+              _Ty=Predator
+          ]
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\memory(971): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<sf::Vertex&,float&,float&>(sf::Vertex &,float &,float &)' being compiled
+          with
+          [
+              _Ty=Predator
+          ]
+  Game.cpp(54): note: see reference to function template instantiation 'std::shared_ptr<Predator> std::make_shared<Predator,sf::Vertex&,float&,float&>(sf::Vertex &,float &,float &)' being compiled
+  Main.cpp
+Main.cpp(6): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Predator.cpp
+  Prey.cpp
+Prey.cpp(17): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+Prey.cpp(18): warning C4244: '=': conversion from 'unsigned int' to 'float', possible loss of data
+  Generating code
+  All 306 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  SFMLPredatorAndPrey.vcxproj -> C:\Users\peter\Desktop\SFML\SFML\Code\SFMLPredatorAndPrey\x64\Release\SFMLPredatorAndPrey.exe
+  SFMLPredatorAndPrey.vcxproj -> C:\Users\peter\Desktop\SFML\SFML\Code\SFMLPredatorAndPrey\x64\Release\SFMLPredatorAndPrey.pdb (Full PDB)

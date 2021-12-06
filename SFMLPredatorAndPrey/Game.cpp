@@ -29,10 +29,9 @@ the position of the death function can significantly change how the game is play
 creatures can perform their action then do a health check etc
 
 Things to do:
-to optimise see how well hopsons videos run
-remove redundant functions that creature dosen't use but predator and prey do
 it is still possible for all predators to die but for now it seems that is unlikely so for now should be fine
 test the game using the release API to check if its any faster or breaks
+look at places that i can pass by reference for shared_ptr
 */
 
 shared_ptr<Creature> creatures[WIDTH][HEIGHT];
@@ -68,12 +67,28 @@ Game::Game() : window(sf::VideoMode(WIDTH, HEIGHT), "Predator and Prey"),
 	}
 }
 
+
+//Multi threaded drawing would be nice but it dosen't improve anything
+//But using SFML threads to handle the creatures with a lock improve performance
 void Game::run() {
 	sf::Clock clock; // starts the clock
+	
+	vector<std::thread> threads;
+
+	//maybe instead copy the array into a async thread and reconstruct when it returns
 	while (window.isOpen())
 	{
 		window.clear();
-		handleCreatures();
+		//handleCreatures();
+		threads.clear();
+		int threadVal = 50;
+		for (int x = 0; x < WIDTH; x+= threadVal) {
+			for (int y = 0; y < HEIGHT; y+= threadVal) {
+				threads.push_back(std::thread(&Game::handleCreatures, this,x, y, x + threadVal, y + threadVal));
+			}
+		}
+		for (auto& th : threads) th.join();
+		
 		handlePixelsVector();
 		window.draw(pixels.data(), pixels.size(), sf::Points);
 		window.display();
@@ -122,7 +137,7 @@ void Game::pollEvents() {
 
 void Game::handlePixelsVector()
 {
-	pixels.clear();
+	pixels.clear();//This has been tested and isn't a big performance sink
 	for (int x = 0; x < WIDTH; x++) {
 		for (int y = 0; y < HEIGHT; y++) {
 			if (creatures[x][y] != NULL) {
@@ -132,11 +147,13 @@ void Game::handlePixelsVector()
 	}
 }
 
-void Game::handleCreatures()
+void Game::handleCreatures(int minX,int minY, int maxX, int maxY)//split handle creatures to a section of the array to handle 
+//so it can access the entire array but is given a specific section to handle and assign
+//make sure when doing this to ensure that 
 {
 	//Call all of the behaviour in here
-	for (int x = 0; x < WIDTH; x++) {//for performance i could store them in a vector and 2d array so that i know which to check instead of doing the null check
-		for (int y = 0; y < HEIGHT; y++) {
+	for (int x = minX; x < maxX; x++) {//for performance i could store them in a vector and 2d array so that i know which to check instead of doing the null check
+		for (int y = minY; y < maxY; y++) {
 			if (creatures[x][y] != NULL) {
 				//This defeats the point of having different classes if i have to do multiple if statements to 
 				//check which one it is try to get something like finalTakeoutApp working
@@ -144,7 +161,9 @@ void Game::handleCreatures()
 				shared_ptr<Prey> derivedCreature = dynamic_pointer_cast<Prey>(creatures[x][y]);
 				if (derivedCreature) {
 					derivedCreature->Move();
-					creatures[x][y] = NULL;
+					if (x != derivedCreature->getX() && y != derivedCreature->getY()) {
+						creatures[x][y] = NULL;
+					}
 					creatures[derivedCreature->getX()][derivedCreature->getY()] = derivedCreature;
 					derivedCreature->handleHealth();
 				}

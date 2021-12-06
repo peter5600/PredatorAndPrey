@@ -1,7 +1,11 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 #include <vector>
+#include <functional>//for std::bind
 #include <memory>
+#include <thread>
+#include <future>         // std::async, std::future
 #include <stdlib.h>
 #include <iostream>
 #include "Creature.h"
@@ -26,5 +30,5 @@ private:
 	sf::RenderWindow window;
 	vector<sf::Vertex> pixels;
 	void handlePixelsVector();
-	void handleCreatures();
+	void handleCreatures(int minX, int minY, int maxX, int maxY);
 };

@@ -8,7 +8,7 @@ Prey::Prey(sf::Vertex pixel, unsigned int x, unsigned int y) : Creature(pixel, x
 void Prey::Move()
 {
 	this->getMove();//this will set tmpX and tmpY so that i can try moving there
-	if (this->getTmpX() != this->getX() || this->getTmpY() != this->getY()) {//means it moved in case i add additional logic later
+	if (this->getTmpX() != this->getX() || this->getTmpY() != this->getY()) {
 		shared_ptr<Creature> creatureAtLocation = findCreatureAtPos(this->getTmpX(), this->getTmpY());//This line
 		if (creatureAtLocation == NULL) {
 			//its an empty space

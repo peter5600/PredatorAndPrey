@@ -1,3 +1,15 @@
-﻿  Creature.cpp
+﻿  Game.cpp
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(901): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(971): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<sf::Vertex&,float&,float&>(sf::Vertex &,float &,float &)' being compiled
+          with
+          [
+              _Ty=Predator
+          ]
+  c:\program files (x86)\microsoft visual studio 14.0\vc\include\memory(971): note: see reference to function template instantiation 'std::_Ref_count_obj<_Ty>::_Ref_count_obj<sf::Vertex&,float&,float&>(sf::Vertex &,float &,float &)' being compiled
+          with
+          [
+              _Ty=Predator
+          ]
+  c:\users\peter\desktop\sfml\sfml\code\sfmlpredatorandprey\sfmlpredatorandprey\game.cpp(55): note: see reference to function template instantiation 'std::shared_ptr<Predator> std::make_shared<Predator,sf::Vertex&,float&,float&>(sf::Vertex &,float &,float &)' being compiled
   SFMLPredatorAndPrey.vcxproj -> C:\Users\peter\Desktop\SFML\SFML\Code\SFMLPredatorAndPrey\x64\Debug\SFMLPredatorAndPrey.exe
   SFMLPredatorAndPrey.vcxproj -> C:\Users\peter\Desktop\SFML\SFML\Code\SFMLPredatorAndPrey\x64\Debug\SFMLPredatorAndPrey.pdb (Partial PDB)
